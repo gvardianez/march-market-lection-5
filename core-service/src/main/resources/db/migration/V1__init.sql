@@ -75,7 +75,7 @@ create table orders
 create table orders_items
 (
     id                      bigserial primary key,
-    order_id                bigint references users (id),
+    order_id                bigint references orders (id), -- почему то здесь была связь на users (id)
     product_id              bigint references products (id),
     price_per_product       numeric(8, 2),
     quantity                int,

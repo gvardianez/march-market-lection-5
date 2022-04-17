@@ -11,4 +11,9 @@ public class GlobalExceptionsHandler {
     public ResponseEntity<AppError> handleResourceNotFoundException(ResourceNotFoundException e) {
         return new ResponseEntity<>(new AppError("RESOURCE_NOT_FOUND", e.getMessage()), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<AppError> handleCartIsEmptyException(CartIsEmptyException e) {
+        return new ResponseEntity<>(new AppError("CART_CANNOT_BE_EMPTY", e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
 }

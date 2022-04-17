@@ -16,8 +16,24 @@ public class CartItem {
     private BigDecimal pricePerProduct;
     private BigDecimal price;
 
-    public void incrementQuantity() {
-        quantity++;
-        price = price.add(pricePerProduct);
+//    public void incrementQuantity() {
+//        quantity++;
+//        price = price.add(pricePerProduct);
+//    }
+
+    public void changeQuantity(int delta) {
+        this.quantity += delta;
+        calculateTotalPrice(quantity);
     }
+
+    public void setQuantity(int newQuantity) {
+        this.quantity = newQuantity;
+        calculateTotalPrice(quantity);
+    }
+
+    private void calculateTotalPrice(int quantity) {
+        this.price = pricePerProduct.multiply(BigDecimal.valueOf(quantity));
+    }
+
+
 }

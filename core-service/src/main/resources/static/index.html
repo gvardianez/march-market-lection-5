@@ -78,13 +78,36 @@
             <td>Название</td>
             <td>Количество</td>
             <td>Цена</td>
+            <td>Установить количество</td>
+            <td></td>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="ci in cart.items">
             <td>{{ci.productTitle}}</td>
-            <td>{{ci.quantity}}</td>
+            <td>
+                <button class="btn btn-primary" ng-click="changeQuantity(ci.productId, -1)">-</button>
+                {{ci.quantity}}
+                <button class="btn btn-primary" ng-click="changeQuantity(ci.productId, 1)">+</button>
+            </td>
             <td>{{ci.pricePerProduct + ' x ' + ci.quantity + ' = ' + ci.price}}</td>
+            <td>
+                <form class="row g-3" ng-submit="setNewQuantity(ci.productId, newQuantity)">
+                    <div class="col-auto">
+                        <input type="number" class="form-control" ng-model = "newQuantity"
+                               placeholder="Новое количество">
+                    </div>
+                    <div class="col-auto">
+                        <button ng-click="setNewQuantity(ci.productId, newQuantity)" class="btn btn-primary">
+                            ОК
+                        </button>
+                    </div>
+                </form>
+            </td>
+
+            <td>
+                <button class="btn btn-danger" ng-click="removeProductFromCart(ci.productId)">Удалить</button>
+            </td>
         </tr>
         <tr>
             <td></td>
@@ -96,23 +119,23 @@
     <p></p>
     <button class="btn btn-primary" ng-click="createOrder()">Оформить заказ</button>
 
-<!--    <p></p>-->
-<!--    <h3>Добавить продукт</h3>-->
-<!--    <p></p>-->
-<!--    <form class="row g-3" ng-submit="createNewProduct()">-->
-<!--        <div class="col-auto">-->
-<!--            <input type="text" class="form-control" id="newProductTitle" ng-model="newProduct.title" placeholder="Название">-->
-<!--        </div>-->
-<!--        <div class="col-auto">-->
-<!--            <input type="number" class="form-control" id="newProductPrice" ng-model="newProduct.price" placeholder="Цена">-->
-<!--        </div>-->
-<!--        <div class="col-auto">-->
-<!--            <input type="text" class="form-control" id="newProductCategoryTitle" ng-model="newProduct.categoryTitle" placeholder="Название категории">-->
-<!--        </div>-->
-<!--        <div class="col-auto">-->
-<!--            <button type="submit" class="btn btn-primary mb-3">Создать</button>-->
-<!--        </div>-->
-<!--    </form>-->
+    <!--    <p></p>-->
+    <!--    <h3>Добавить продукт</h3>-->
+    <!--    <p></p>-->
+    <!--    <form class="row g-3" ng-submit="createNewProduct()">-->
+    <!--        <div class="col-auto">-->
+    <!--            <input type="text" class="form-control" id="newProductTitle" ng-model="newProduct.title" placeholder="Название">-->
+    <!--        </div>-->
+    <!--        <div class="col-auto">-->
+    <!--            <input type="number" class="form-control" id="newProductPrice" ng-model="newProduct.price" placeholder="Цена">-->
+    <!--        </div>-->
+    <!--        <div class="col-auto">-->
+    <!--            <input type="text" class="form-control" id="newProductCategoryTitle" ng-model="newProduct.categoryTitle" placeholder="Название категории">-->
+    <!--        </div>-->
+    <!--        <div class="col-auto">-->
+    <!--            <button type="submit" class="btn btn-primary mb-3">Создать</button>-->
+    <!--        </div>-->
+    <!--    </form>-->
 </div>
 </body>
 </html>
