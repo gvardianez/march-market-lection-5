@@ -49,12 +49,5 @@ public class OrderDto {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "OrderDto{" +
-                "id=" + id +
-                ", customer='" + customer + '\'' +
-                ", price=" + price +
-                '}';
-    }
+
 }
