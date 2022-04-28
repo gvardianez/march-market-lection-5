@@ -48,4 +48,13 @@ public class OrderDto {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "OrderDto{" +
+                "id=" + id +
+                ", customer='" + customer + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
