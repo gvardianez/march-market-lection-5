@@ -23,4 +23,24 @@ public class CartController {
     public void addProductToCart(@PathVariable Long productId) {
         cartService.addToCart(productId);
     }
+
+    @GetMapping("/change_quantity")
+    public void changeProductQuantityInCart(@RequestParam Long id, @RequestParam Integer delta) {
+        cartService.changeProductQuantity(id, delta);
+    }
+    @GetMapping("/set_quantity")
+    public void setNewQuantity(@RequestParam Long id, @RequestParam Integer newQuantity) {
+        cartService.setProductQuantity(id, newQuantity);
+    }
+
+    @GetMapping("/remove/{id}")
+    public void removeProductFromCartById(@PathVariable Long id) {
+        cartService.removeProductById(id);
+    }
+
+    @GetMapping("/clear")
+    public void clearCart() {
+        cartService.clearCart();
+    }
+
 }

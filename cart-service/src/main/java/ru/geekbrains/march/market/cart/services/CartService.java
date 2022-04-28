@@ -30,4 +30,20 @@ public class CartService {
         ProductDto p = productServiceIntegration.findById(productId);
         cart.add(p);
     }
+
+    public void changeProductQuantity(Long id, Integer delta) {
+        cart.changeProductQuantity(id, delta);
+    }
+
+    public void setProductQuantity(Long id, Integer newQuantity) {
+        cart.setProductQuantity(id,newQuantity);
+    }
+
+    public void removeProductById(Long id) {
+        cart.remove(id);
+    }
+
+    public void clearCart() {
+        cart.clear();
+    }
 }

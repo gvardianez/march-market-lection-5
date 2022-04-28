@@ -69,8 +69,45 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
             });
     }
 
-    $scope.createOrder = function () {
+    $scope.changeQuantity = function (productId, delta) {
+        $http({
+            url: 'http://localhost:8190/market-cart/api/v1/cart/change_quantity',
+            method: 'GET',
+            params: {
+                id: productId,
+                delta: delta
+            }
+        }).then(function (response) {
+            $scope.loadCart();
+        });
+    }
 
+    $scope.setNewQuantity = function (productId, newQuantity) {
+        $http({
+            url: 'http://localhost:8190/market-cart/api/v1/cart/set_quantity',
+            method: 'GET',
+            params: {
+                id: productId,
+                newQuantity: newQuantity
+            }
+        }).then(function (response) {
+            $scope.loadCart();
+        });
+    }
+
+    $scope.removeProductFromCart = function (id) {
+        $http.get('http://localhost:8190/market-cart/api/v1/cart/remove/' + id)
+            .then(function (response) {
+                $scope.loadCart();
+            });
+    }
+
+    $scope.createOrder = function () {
+        $http.post('http://localhost:8189/market-core/api/v1/orders/')
+            .then(function (response) {
+                alert('Order is processed' + '\n' + 'Customer: ' + response.data.customer + '\n' + 'price: ' + response.data.price);
+                $scope.loadCart();
+            });
     }
 
     // $scope.deleteProduct = function (id) {
